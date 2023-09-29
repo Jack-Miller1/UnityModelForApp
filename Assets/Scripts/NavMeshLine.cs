@@ -12,7 +12,7 @@ public class NavMeshLine : MonoBehaviour
     public static GameObject destination;
 
     private string originRoom = "N342";
-    private string destinationRoom = "Womens Bath";
+    private string destinationRoom = "N396";
     public string building = "N";
 
     public static LineRenderer lineRendererBig;
