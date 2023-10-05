@@ -30,7 +30,7 @@ ScriptsOnlyBuild:
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceScalerSettingsBase
   methodsToPreserve: []
   sceneClasses:
-    Assets/Scenes/N3.unity:
+    Assets/Scenes/N2.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -70,9 +70,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7516}
     - Class: 114
-      Script: {instanceID: 24390}
+      Script: {instanceID: 24720}
     - Class: 114
-      Script: {instanceID: 24392}
+      Script: {instanceID: 24722}
+    - Class: 114
+      Script: {instanceID: 24724}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -84,6 +86,8 @@ ScriptsOnlyBuild:
     - Class: 195
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 208
       Script: {instanceID: 0}
     - Class: 238
       Script: {instanceID: 0}
@@ -764,7 +768,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: bdcf124fed5d66c8ce67d2c5d04b1b5b
+      Hash: ea55be905330ea624003768565616369
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DataFromReact
@@ -1046,5 +1050,5 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   platform: 13
   scenePathNames:
-  - Assets/Scenes/N3.unity
+  - Assets/Scenes/N2.unity
   playerPath: C:/Users/turtl/OneDrive/Documents/GitHub/WayfindingApp/unity/builds/android

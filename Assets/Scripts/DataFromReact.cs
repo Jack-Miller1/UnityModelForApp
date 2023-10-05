@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DataFromReact : MonoBehaviour
 {
-    public string name;
-    public string age;
+    public string originR = "TN270"; //originR because orgin comes from React Native (there is a different origin used later)
+    public string destinationR = "TN288";
+    public string beaconID1R;
+    public string distance1R;
 
     private static DataFromReact instance;
 
@@ -19,7 +21,7 @@ public class DataFromReact : MonoBehaviour
                 if (instance == null)
                 {
                     GameObject obj = new GameObject();
-                    obj.name = typeof(DataFromReact).Name;
+                    //obj.name = typeof(DataFromReact).Name;   // This line will name the object
                     instance = obj.AddComponent<DataFromReact>();
                 }
             }
@@ -29,15 +31,20 @@ public class DataFromReact : MonoBehaviour
 
     public  class JsonObject
     {
-        public string name;
-        public string age;
+        public string originR;
+        public string destinationR;
+        public string beaconID1R;
+        public string distance1R;
+        
     }
     // As you can see here is the name of the function that we get the data.
     // it should have the same name in RN function postMessage.
         public void GetDatas(string json)
         {
             JsonObject obj = JsonUtility.FromJson<JsonObject>(json);
-            name = obj.name;
-            age = obj.age;
+            originR = obj.originR;
+            destinationR = obj.destinationR;
+            beaconID1R = obj.beaconID1R;
+            distance1R = obj.distance1R;
         }
 }

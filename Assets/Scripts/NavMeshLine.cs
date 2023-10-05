@@ -8,12 +8,13 @@ using System.IO;
 
 public class NavMeshLine : MonoBehaviour
 {
+    private DataFromReact DR;                  // used DR as name for DataFromReact (allows access to variables from DataFromReact.cs)
     public static GameObject origin;
-    public static GameObject destination;
+    public static GameObject destination;      // origin and destination are used as game objects
 
-    private string originRoom = "N342";
-    private string destinationRoom = "N396";
-    public string building = "N";
+    private string originRoom = "N270";
+    private string destinationRoom = "N288";   // originRoom and destinationRoom are strings
+    public string building = "N";              // Meanwhile, originR and destinationR will be taken as strings from DataFromReact.cs
 
     public static LineRenderer lineRendererBig;
     public static LineRenderer lineRendererSmall;
@@ -29,15 +30,26 @@ public class NavMeshLine : MonoBehaviour
     void Start()
     {
         //initialize navmesh agent and line renderer
-
         GameObject lb = GameObject.Find("LineRendererBig");
         GameObject ls = GameObject.Find("LineRendererSmall");
         lineRendererBig = lb.GetComponent<LineRenderer>();
         lineRendererSmall = ls.GetComponent<LineRenderer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         destinationScene = building + destinationRoom.Substring(1,1);
-        
-        origin = GameObject.Find(originRoom);
+
+        DR = DataFromReact.Instance; //define instance of DR for use later
+    }
+
+    void Update()
+    {
+        // set originRoom and destinationRoom strings to values from DataFromReact
+        if (DR.originR != null && DR.destinationR != null)
+        {
+            originRoom = DR.originR.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
+            destinationRoom = DR.destinationR.Substring(1);
+        }
+
+        origin = GameObject.Find(originRoom);  // "convert" string into game object
 
         if (GameObject.Find(destinationRoom) == null){
             if (accessibileRoute){
@@ -52,16 +64,11 @@ public class NavMeshLine : MonoBehaviour
             destination = GameObject.Find(destinationRoom);
         }
 
-        //initialize navmesh
         NavMeshPath navMeshPath = new NavMeshPath();
 
-        //Creates the illusion that the user is going down the center of the line
+        // Use the current origin and destination to update the line
         calculatePath(origin, destination, navMeshPath, lineRendererBig, 60.0f);
         calculatePath(origin, destination, navMeshPath, lineRendererSmall, 1.0f);
-    }
-
-    void Update()
-    {
 
         //Switches scene when user clicks enter
         if (Input.GetKeyDown(KeyCode.Return))
@@ -74,7 +81,9 @@ public class NavMeshLine : MonoBehaviour
             
             SceneManager.LoadScene(destinationScene);
         }
+
     }
+
 
     static void calculatePath(GameObject origin, GameObject destination, NavMeshPath navMeshPath, LineRenderer lineRenderer, float width)
     {
@@ -118,9 +127,3 @@ public class NavMeshLine : MonoBehaviour
         return nearestTag;
     }
 }
-
-    
-
-
-
-    
