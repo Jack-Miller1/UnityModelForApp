@@ -12,8 +12,8 @@ public class NavMeshLine : MonoBehaviour
     public static GameObject origin;
     public static GameObject destination;      // origin and destination are used as game objects
 
-    private string originRoom = "N270";
-    private string destinationRoom = "N288";   // originRoom and destinationRoom are strings
+    private string originRoom = "N259";
+    private string destinationRoom = "N253";   // originRoom and destinationRoom are strings
     public string building = "N";              // Meanwhile, originR and destinationR will be taken as strings from DataFromReact.cs
 
     public static LineRenderer lineRendererBig;
@@ -38,10 +38,13 @@ public class NavMeshLine : MonoBehaviour
         destinationScene = building + destinationRoom.Substring(1,1);
 
         DR = DataFromReact.Instance; //define instance of DR for use later
+        //DR = GetComponent<DataFromReact>();
     }
 
     void Update()
     {
+        //DR.GetDatas("TN290");
+        Debug.Log(DR.messageText.text);
         // set originRoom and destinationRoom strings to values from DataFromReact
         if (DR.originR != null && DR.destinationR != null)
         {
