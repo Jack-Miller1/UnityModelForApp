@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638313643177890680
-    m_Hash: 1453484792
+      ticks: 638324635654263979
+    m_Hash: 2066144050
   m_LockFileStatus:
     m_FilePath: C:/Users/turtl/OneDrive/Documents/GitHub/UnityModel/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638313643177970691
-    m_Hash: 3337094863
+      ticks: 638324635654273974
+    m_Hash: 389814448
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

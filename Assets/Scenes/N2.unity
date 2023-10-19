@@ -5839,7 +5839,7 @@ GameObject:
   - component: {fileID: 385703437}
   - component: {fileID: 385703436}
   m_Layer: 0
-  m_Name: Womens Bath
+  m_Name: Womens Bathroom
   m_TagString: Bathroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9389,7 +9389,7 @@ GameObject:
   - component: {fileID: 608586932}
   - component: {fileID: 608586931}
   m_Layer: 0
-  m_Name: Mens Bath
+  m_Name: Mens Bathroom
   m_TagString: Bathroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10656,14 +10656,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652774072}
-  m_LocalRotation: {x: 1.11022296e-17, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -261, y: -3264.9998, z: -3587}
+  m_LocalRotation: {x: -8.695445e-18, y: 0.62174976, z: 6.9028077e-18, w: -0.783216}
+  m_LocalPosition: {x: -223.22992, y: -3264.9998, z: -3436.864}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 808299635}
   m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 283.112, z: 0}
 --- !u!64 &652774074
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28128,7 +28128,7 @@ MonoBehaviour:
   messageText: {fileID: 1226383784}
   originR: TN241
   destinationR: TN246
-  beaconID1R: 
+  beaconID1R: 18
   distance1R: 
 --- !u!1 &1796338510
 GameObject:
@@ -31874,74 +31874,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1998882641
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1998882644}
-  - component: {fileID: 1998882643}
-  - component: {fileID: 1998882642}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1998882642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998882641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &1998882643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998882641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &1998882644
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998882641}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051058337
 GameObject:
   m_ObjectHideFlags: 0

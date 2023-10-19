@@ -29,8 +29,10 @@ public class DataFromReact : MonoBehaviour
                 instance = FindObjectOfType<DataFromReact>();
                 if (instance == null)
                 {
-                    GameObject obj = new GameObject("ReactToUnity"); // previously just GameObject()
+                    //GameObject obj = new GameObject("ReactToUnity"); // previously just GameObject()
                     //obj.name = typeof(DataFromReact).Name;   // This line will name the object
+
+                    GameObject obj = GameObject.Find("ReactToUnity"); // Find the existing object named "ReactToUnity" in the scene
                     instance = obj.AddComponent<DataFromReact>();
                 }
             }
@@ -88,7 +90,7 @@ public class DataFromReact : MonoBehaviour
     }
     // As you can see here is the name of the function that we get the data.
     // it should have the same name in RN function postMessage.
-    public void GetDatas(string json)
+    public void GetData(string json)
     {
         //textMeshProUGUI.text = json;
         JsonObject obj = JsonUtility.FromJson<JsonObject>(json);
@@ -100,7 +102,7 @@ public class DataFromReact : MonoBehaviour
 
         // Update the Unity UI Text component
         messageText.text  = "Origin: " + originR + ", Destination: " + destinationR +
-                            ", Beacon ID: " + beaconID1R + ", Distance: " + distance1R;
+                            ", Beacon ID1: " + beaconID1R + ", Distance1: " + distance1R;
         Debug.Log("Message received: " + messageText.text);
 
         // if (textMeshProUGUI != null)
