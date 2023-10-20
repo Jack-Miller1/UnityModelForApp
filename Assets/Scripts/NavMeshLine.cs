@@ -85,8 +85,8 @@ public class NavMeshLine : MonoBehaviour
         string sceneToLoad = "Scenes/N2";
         Scene currentScene = SceneManager.GetActiveScene();
 
-        // set originRoom and destinationRoom strings to values from DataFromReact
-        if (DR.originR != null && DR.destinationR != null && DR.beaconID1R != null && DR.beaconID1R != "") // checks if the closest beacon is valid
+        // set originRoom and destinationRoom strings to values from DataFromReact              //DR.originR != null && DR.originR != "" &&
+        if (DR.destinationR != null && DR.beaconID1R != null && DR.beaconID1R != "") // checks if the closest beacon is valid
         {
             originRoom = "Beacon " + DR.beaconID1R;
             destinationRoom = DR.destinationR;
@@ -94,10 +94,10 @@ public class NavMeshLine : MonoBehaviour
                 sceneToLoad = "Scenes/N1";
             }
             else if (DR.beaconID1R == "15" || DR.beaconID1R == "16" || DR.beaconID1R == "17" ||DR.beaconID1R == "18"){
-                sceneToLoad = "Scenes/N2";
+                sceneToLoad = "Scenes/N3";
             }
             else{
-                sceneToLoad = "Scenes/N3";
+                sceneToLoad = "Scenes/N2";
             }
         }
         else if (DR.originR != null && DR.destinationR != null) // uses the closest room entered by the user in React Native if no beacons found

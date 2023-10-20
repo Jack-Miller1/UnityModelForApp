@@ -12354,7 +12354,7 @@ GameObject:
   - component: {fileID: 748040454}
   - component: {fileID: 748040453}
   m_Layer: 0
-  m_Name: Beacon 18
+  m_Name: Beacon 14 (missing)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28128,7 +28128,7 @@ MonoBehaviour:
   messageText: {fileID: 1226383784}
   originR: TN241
   destinationR: TN246
-  beaconID1R: 18
+  beaconID1R: 
   distance1R: 
 --- !u!1 &1796338510
 GameObject:
