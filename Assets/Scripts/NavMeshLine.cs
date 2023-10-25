@@ -18,8 +18,6 @@ public class NavMeshLine : MonoBehaviour
 
     public static LineRenderer lineRendererBig;
     public static LineRenderer lineRendererSmall;
-    // public LineRenderer lineRendererBig;
-    // public LineRenderer lineRendererSmall;  //to track specific instance
     private NavMeshAgent navMeshAgent;
 
     public static bool accessibileRoute = false;
@@ -30,6 +28,8 @@ public class NavMeshLine : MonoBehaviour
     private GameObject elevator;
 
     private static NavMeshLine instance;
+
+    private static string lastScene;
 
     // private void Awake()
     // {
@@ -65,6 +65,8 @@ public class NavMeshLine : MonoBehaviour
         //DR = GetComponent<DataFromReact>();
 
         DontDestroyOnLoad(DR.gameObject); //make sure ReactToUnity doesn't get destroyed when loading a new scene
+
+
         //SceneManager.LoadScene("Scenes/N2"); //start script on second floor (contains ReactToUnity game object)
         //Debug.Log("scene 2 loaded");
 
@@ -81,35 +83,45 @@ public class NavMeshLine : MonoBehaviour
     void Update()
     {
         Debug.Log(DR.messageText.text);
-        
-        string sceneToLoad = "Scenes/N2";
+        string sceneToLoad = "";
         Scene currentScene = SceneManager.GetActiveScene();
 
-        // set originRoom and destinationRoom strings to values from DataFromReact              //DR.originR != null && DR.originR != "" &&
+        // set originRoom and destinationRoom strings to values from DataFromReact
         if (DR.destinationR != null && DR.beaconID1R != null && DR.beaconID1R != "") // checks if the closest beacon is valid
         {
+            if (DR.beaconID1R == "19" || DR.beaconID1R == "20" || DR.beaconID1R == "21" || DR.beaconID1R == "22"){ //beacons on 1st floor stairs
+                if(currentScene.name == "N1" && destinationScene != "N1"){ // going up stairs
+                    sceneToLoad = "N2";
+                }
+                else{ // going down stairs
+                    sceneToLoad = "N1";
+                }
+            }
+            else if (DR.beaconID1R == "15" || DR.beaconID1R == "16" || DR.beaconID1R == "17" ||DR.beaconID1R == "18"){ //beacons on 3rd floor stairs
+                if(currentScene.name == "N3" && destinationScene != "N3"){ // going down stairs
+                    sceneToLoad = "N2";
+                }
+                else{ // going up stairs
+                    sceneToLoad = "N3";
+                }
+            }
+            //rest of beacons on second floor (currently using these when on 1st and 3rd, don't change scene)
+            // else{
+            //     sceneToLoad = "N2"; 
+            // }
             originRoom = "Beacon " + DR.beaconID1R;
             destinationRoom = DR.destinationR;
-            if (DR.beaconID1R == "19" || DR.beaconID1R == "20" || DR.beaconID1R == "21" || DR.beaconID1R == "22"){
-                sceneToLoad = "Scenes/N1";
-            }
-            else if (DR.beaconID1R == "15" || DR.beaconID1R == "16" || DR.beaconID1R == "17" ||DR.beaconID1R == "18"){
-                sceneToLoad = "Scenes/N3";
-            }
-            else{
-                sceneToLoad = "Scenes/N2";
-            }
         }
         else if (DR.originR != null && DR.destinationR != null) // uses the closest room entered by the user in React Native if no beacons found
         {
             if (DR.originR[0] == 'T')
             {
                 originRoom = DR.originR.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
-                sceneToLoad = "Scenes/" + originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
+                sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
             }
             else{
                 originRoom = DR.originR;
-                sceneToLoad = "Scenes/" + originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
+                sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
             }
             // if (DR.destinationR[0] == 'T')
             // {
@@ -130,10 +142,12 @@ public class NavMeshLine : MonoBehaviour
                 destinationRoom = DR.destinationR;
             }
 
-        if (sceneToLoad != ("Scenes/" + currentScene.name)){ //switch scenes if needed
+
+
+
+        if ( (sceneToLoad != currentScene.name) && (sceneToLoad != lastScene)) { //switch scenes if needed
+            lastScene = currentScene.name; // Update what the lastScene was
             SceneManager.LoadScene(sceneToLoad);
-            Debug.Log(sceneToLoad);
-            Debug.Log(currentScene.name);
         }
 
         origin = GameObject.Find(originRoom);  // "convert" string into game object
