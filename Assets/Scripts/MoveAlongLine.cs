@@ -6,7 +6,8 @@ public class MoveAlongLine : MonoBehaviour
 {
     // Start is called before the first frame update
     public LineRenderer lineRenderer = NavMeshLine.lineRendererSmall;
-    public float speed = 1.0F;
+    // public LineRenderer lineRenderer = NavMeshLine.Instance.lineRendererSmall; //now uses specific instance from NavMeshLine
+    public float speed = 1.0F; 
 
     private float distanceAlongLine = 0;
 
