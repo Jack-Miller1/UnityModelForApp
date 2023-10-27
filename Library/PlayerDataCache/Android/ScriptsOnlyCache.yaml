@@ -73,9 +73,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7542}
     - Class: 114
-      Script: {instanceID: 24636}
+      Script: {instanceID: 24878}
     - Class: 114
-      Script: {instanceID: 24638}
+      Script: {instanceID: 24880}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -138,11 +138,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7542}
     - Class: 114
-      Script: {instanceID: 24636}
+      Script: {instanceID: 24878}
     - Class: 114
-      Script: {instanceID: 24638}
+      Script: {instanceID: 24880}
     - Class: 114
-      Script: {instanceID: 26936}
+      Script: {instanceID: 24882}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -205,9 +205,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7542}
     - Class: 114
-      Script: {instanceID: 24636}
+      Script: {instanceID: 24878}
     - Class: 114
-      Script: {instanceID: 24638}
+      Script: {instanceID: 24880}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -617,7 +617,7 @@ ScriptsOnlyBuild:
     className: AdaptiveViewDistance
   - hash:
       serializedVersion: 2
-      Hash: 66bca5cc6a18c5298ec75235e56a84d6
+      Hash: 53d2b740234bf7f5bfe6bd8e34e9e5d4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TopDownCamera

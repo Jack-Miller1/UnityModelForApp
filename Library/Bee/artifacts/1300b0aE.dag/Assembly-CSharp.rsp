@@ -358,6 +358,7 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/DataFromReact.cs"
+"Assets/Scripts/FollowUserButtonManager.cs"
 "Assets/Scripts/MoveAlongLine.cs"
 "Assets/Scripts/NavMeshLine.cs"
 "Assets/Scripts/SceneLikeCamera.cs"
