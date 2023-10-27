@@ -13420,7 +13420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  followButtonManager: {fileID: 891512119}
+  followButtonManager: {fileID: 0}
   CameraLocked: 0
 --- !u!1 &808299634
 GameObject:
@@ -14416,7 +14416,7 @@ GameObject:
   - component: {fileID: 891512117}
   - component: {fileID: 891512119}
   m_Layer: 5
-  m_Name: Button Text
+  m_Name: Follow User
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

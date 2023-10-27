@@ -860,8 +860,6 @@ struct FieldInfo_t;
 struct Flow_tC370BDFF173D53E274F883ED6ADAFE29B049C582;
 // Unity.VisualScripting.FlowGraph
 struct FlowGraph_tF9E42FECF535CD5BAB10F75672B5BCE285627A45;
-// FollowUserButtonManager
-struct FollowUserButtonManager_t3BBB28EF9613F693A221539B03B33808BF5FD976;
 // UnityEngine.Font
 struct Font_tC95270EA3198038970422D78B74A7F2E218A96B6;
 // UnityEngine.TextCore.Text.FontAsset
@@ -16869,8 +16867,8 @@ struct TopDownCamera_tCEF672FD7C3D9DA9A812FFD53FFA96935D2E07FB  : public MonoBeh
 	Vector2U5BU5D_tFEBBC94BCC6C9C88277BA04047D2B3FDB6ED7FDA* ___lastZoomPositions_14;
 	// UnityEngine.GameObject TopDownCamera::target
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___target_15;
-	// FollowUserButtonManager TopDownCamera::followButtonManager
-	FollowUserButtonManager_t3BBB28EF9613F693A221539B03B33808BF5FD976* ___followButtonManager_16;
+	// UnityEngine.GameObject TopDownCamera::followButtonManager
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___followButtonManager_16;
 	// System.Boolean TopDownCamera::CameraLocked
 	bool ___CameraLocked_17;
 };

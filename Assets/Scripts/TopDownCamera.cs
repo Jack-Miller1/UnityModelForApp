@@ -21,7 +21,7 @@ public class TopDownCamera : MonoBehaviour
     private Vector2[] lastZoomPositions; // Touch mode only
 
     public GameObject target; // the object to follow when camera is locked
-    public FollowUserButtonManager followButtonManager ;
+    public GameObject followButtonManager;
     public bool CameraLocked = true;
 
     void Awake()
@@ -32,11 +32,13 @@ public class TopDownCamera : MonoBehaviour
     void Start()
     {
         target = GameObject.Find("User");
+        followButtonManager = GameObject.Find("Follow User");
     }
 
     void Update()
     {
-        CameraLocked = followButtonManager.followOn;
+        //CameraLocked = followButtonManager.FollowUserButtonManager.followOn;
+        CameraLocked = followButtonManager.GetComponent<FollowUserButtonManager>().followOn;
         if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer && !CameraLocked)
         {
             HandleTouch();

@@ -65,7 +65,10 @@ public class NavMeshLine : MonoBehaviour
         //DR = GetComponent<DataFromReact>();
 
         DontDestroyOnLoad(DR.gameObject); //make sure ReactToUnity doesn't get destroyed when loading a new scene
-
+        foreach (Transform child in DR.transform) //make sure each child object of ReactToUnity is also not destroyed
+        {
+            DontDestroyOnLoad(child.gameObject);
+        }
 
         //SceneManager.LoadScene("Scenes/N2"); //start script on second floor (contains ReactToUnity game object)
         //Debug.Log("scene 2 loaded");
