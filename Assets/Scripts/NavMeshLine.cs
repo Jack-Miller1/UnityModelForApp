@@ -82,14 +82,14 @@ public class NavMeshLine : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(DR.messageText.text);
+        //Debug.Log(DR.messageText.text);
         string sceneToLoad = "";
         Scene currentScene = SceneManager.GetActiveScene();
 
         // set originRoom and destinationRoom strings to values from DataFromReact
-        if (DR.destinationR != null && DR.beaconID1R != null && DR.beaconID1R != "") // checks if the closest beacon is valid
+        if (DR.destination != null && DR.beacon1 != null && DR.beacon1 != "") // checks if the closest beacon is valid
         {
-            if (DR.beaconID1R == "19" || DR.beaconID1R == "20" || DR.beaconID1R == "21" || DR.beaconID1R == "22"){ //beacons on 1st floor stairs
+            if (DR.beacon1 == "19" || DR.beacon1 == "20" || DR.beacon1 == "21" || DR.beacon1 == "22"){ //beacons on 1st floor stairs
                 if(currentScene.name == "N1" && destinationScene != "N1"){ // going up stairs
                     sceneToLoad = "N2";
                 }
@@ -97,7 +97,7 @@ public class NavMeshLine : MonoBehaviour
                     sceneToLoad = "N1";
                 }
             }
-            else if (DR.beaconID1R == "15" || DR.beaconID1R == "16" || DR.beaconID1R == "17" ||DR.beaconID1R == "18"){ //beacons on 3rd floor stairs
+            else if (DR.beacon1 == "15" || DR.beacon1 == "16" || DR.beacon1 == "17" ||DR.beacon1 == "18"){ //beacons on 3rd floor stairs
                 if(currentScene.name == "N3" && destinationScene != "N3"){ // going down stairs
                     sceneToLoad = "N2";
                 }
@@ -109,18 +109,18 @@ public class NavMeshLine : MonoBehaviour
             // else{
             //     sceneToLoad = "N2"; 
             // }
-            originRoom = "Beacon " + DR.beaconID1R;
-            destinationRoom = DR.destinationR;
+            originRoom = "Beacon " + DR.beacon1;
+            destinationRoom = DR.destination;
         }
-        else if (DR.originR != null && DR.destinationR != null) // uses the closest room entered by the user in React Native if no beacons found
+        else if (DR.origin != null && DR.destination != null) // uses the closest room entered by the user in React Native if no beacons found
         {
-            if (DR.originR[0] == 'T')
+            if (DR.origin[0] == 'T')
             {
-                originRoom = DR.originR.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
+                originRoom = DR.origin.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
                 sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
             }
             else{
-                originRoom = DR.originR;
+                originRoom = DR.origin;
                 sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
             }
             // if (DR.destinationR[0] == 'T')
@@ -134,12 +134,12 @@ public class NavMeshLine : MonoBehaviour
             // }
         }
 
-        if (DR.destinationR[0] == 'T')
+        if (DR.destination[0] == 'T')
             {
-                destinationRoom = DR.destinationR.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
+                destinationRoom = DR.destination.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
             }
             else{
-                destinationRoom = DR.destinationR;
+                destinationRoom = DR.destination;
             }
 
 

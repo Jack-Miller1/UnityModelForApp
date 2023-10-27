@@ -8,10 +8,11 @@ using UnityEngine.UI;
 public class DataFromReact : MonoBehaviour
 {
     public Text messageText;
-    public string originR = "TN241"; //originR because orgin comes from React Native (there is a different origin used later)
-    public string destinationR = "TN246";
-    public string beaconID1R;
-    public string distance1R;
+    public string origin = "TN241"; //orgin that comes from React Native (there is a different origin used later)
+    public string destination = "TN246";
+    public string beacon1;
+    public bool accessibility;
+    public string floor;
     //public TextMeshProUGUI textMeshProUGUI;
     // public string Hello;
 
@@ -83,10 +84,11 @@ public class DataFromReact : MonoBehaviour
 
     public  class JsonObject
     {
-        public string originR;
-        public string destinationR;
-        public string beaconID1R;
-        public string distance1R;
+        public string origin;
+        public string destination;
+        public string beacon1;
+        public string accessibility;
+        public string floor;
     }
     // As you can see here is the name of the function that we get the data.
     // it should have the same name in RN function postMessage.
@@ -94,15 +96,20 @@ public class DataFromReact : MonoBehaviour
     {
         //textMeshProUGUI.text = json;
         JsonObject obj = JsonUtility.FromJson<JsonObject>(json);
-        originR = obj.originR;
-        destinationR = obj.destinationR;
-        beaconID1R = obj.beaconID1R;
-        distance1R = obj.distance1R;
-        
+        origin = obj.origin;
+        destination = obj.destination;
+        beacon1 = obj.beacon1;
+        if (obj.accessibility == "true"){
+            accessibility = true;
+        }
+        else{
+            accessibility = false;
+        }
+        floor = obj.floor;
 
         // Update the Unity UI Text component
-        messageText.text  = "Origin: " + originR + ", Destination: " + destinationR +
-                            ", Beacon ID1: " + beaconID1R + ", Distance1: " + distance1R;
+        messageText.text  = "Origin: " + origin + ", Destination: " + destination +
+                            ", Beacon ID1: " + beacon1 + ", Accessibility: " + accessibility + ", Floor: " + floor;
         Debug.Log("Message received: " + messageText.text);
 
         // if (textMeshProUGUI != null)

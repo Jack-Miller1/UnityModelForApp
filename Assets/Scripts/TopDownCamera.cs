@@ -5,7 +5,7 @@ using UnityEngine;
 public class TopDownCamera : MonoBehaviour
 {
     private static readonly float PanSpeed = 1800f;
-    private static readonly float ZoomSpeedTouch = 3f;
+    private static readonly float ZoomSpeedTouch = 0.5f;
     private static readonly float ZoomSpeedMouse = 40f;
 
     private static readonly float[] BoundsX = new float[] { -4900f, 4900f }; //left to right
@@ -21,7 +21,8 @@ public class TopDownCamera : MonoBehaviour
     private Vector2[] lastZoomPositions; // Touch mode only
 
     public GameObject target; // the object to follow when camera is locked
-    public bool CameraLocked = false;
+    public FollowUserButtonManager followButtonManager ;
+    public bool CameraLocked = true;
 
     void Awake()
     {
@@ -30,11 +31,12 @@ public class TopDownCamera : MonoBehaviour
 
     void Start()
     {
-       target = GameObject.Find("User");
+        target = GameObject.Find("User");
     }
 
     void Update()
     {
+        CameraLocked = followButtonManager.followOn;
         if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer && !CameraLocked)
         {
             HandleTouch();
