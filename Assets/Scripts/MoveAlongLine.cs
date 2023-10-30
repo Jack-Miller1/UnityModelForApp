@@ -5,7 +5,9 @@ using UnityEngine;
 public class MoveAlongLine : MonoBehaviour
 {
     // Start is called before the first frame update
-    public LineRenderer lineRenderer = NavMeshLine.lineRendererSmall;
+    //public LineRenderer lineRenderer = NavMeshLine.lineRendererSmall;
+    public static LineRenderer lineRenderer;
+
     // public LineRenderer lineRenderer = NavMeshLine.Instance.lineRendererSmall; //now uses specific instance from NavMeshLine
     public float speed = 1.0F; 
 
@@ -18,8 +20,9 @@ public class MoveAlongLine : MonoBehaviour
 
     // private Vector3[] midpoints;
 
-
-    void Start() {
+    private void Start()
+    {
+        lineRenderer = GameObject.Find("LineRendererBig").GetComponent<LineRenderer>();
     }
 
     void Update() {

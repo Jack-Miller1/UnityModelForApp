@@ -2687,7 +2687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a41fcd4165c543fd984e5827f704b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 1461726530}
   speed: 1
 --- !u!1 &186701894
 GameObject:
@@ -29332,10 +29331,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageText: {fileID: 1226383784}
   origin: 
-  destination: TN270
-  beacon1: 7
+  destination: 
+  beacon1: 
   accessibility: 0
-  floor: N3
+  floor: 
 --- !u!1 &1796338510
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,8 +50,8 @@ public class NavMeshLine : MonoBehaviour
         {
             DontDestroyOnLoad(child.gameObject);
         }
-        // DontDestroyOnLoad(lb);
-        // DontDestroyOnLoad(ls);
+        DontDestroyOnLoad(lb);
+        DontDestroyOnLoad(ls);
 
         //load the floor entered by the user. This will then be kept track of by Scene currentScene = SceneManager.GetActiveScene(); in the Update()
         currentScene = SceneManager.GetActiveScene();
