@@ -29331,11 +29331,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 1226383784}
-  origin: TN241
-  destination: TN246
-  beacon1: 
+  origin: 
+  destination: TN270
+  beacon1: 7
   accessibility: 0
-  floor: 
+  floor: N3
 --- !u!1 &1796338510
 GameObject:
   m_ObjectHideFlags: 0

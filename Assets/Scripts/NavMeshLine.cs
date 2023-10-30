@@ -12,8 +12,8 @@ public class NavMeshLine : MonoBehaviour
     public static GameObject origin;
     public static GameObject destination;      // origin and destination are used as game objects
 
-    private string originRoom = "N259";
-    private string destinationRoom = "N253";   // originRoom and destinationRoom are strings
+    private string originRoom;
+    private string destinationRoom;            // originRoom and destinationRoom are strings
     public string building = "N";              // Meanwhile, originR and destinationR will be taken as strings from DataFromReact.cs
 
     public static LineRenderer lineRendererBig;
@@ -23,6 +23,7 @@ public class NavMeshLine : MonoBehaviour
     public static bool accessibileRoute = false;
     
     private string destinationScene;
+    private Scene currentScene;
     
     private GameObject stairs;
     private GameObject elevator;
@@ -30,26 +31,6 @@ public class NavMeshLine : MonoBehaviour
     private static NavMeshLine instance;
 
     private static string lastScene;
-
-    // private void Awake()
-    // {
-    //     // Check if an instance already exists
-    //     if (instance != null)
-    //     {
-    //         // If an instance already exists, destroy this new instance
-    //         Destroy(gameObject);
-    //         return;
-    //     }
-
-    //     // Set the instance to this object
-    //     instance = this;
-
-    //     // Ensure that this instance persists between scenes
-    //     DontDestroyOnLoad(gameObject);
-
-    //     // Your initialization code goes here
-    // }
-
 
     void Start()
     {
@@ -59,7 +40,7 @@ public class NavMeshLine : MonoBehaviour
         lineRendererBig = lb.GetComponent<LineRenderer>();
         lineRendererSmall = ls.GetComponent<LineRenderer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        destinationScene = building + destinationRoom.Substring(2,1); //if input is TN270, the substring will take the 2 (end result: building + 2 = N2)
+        // destinationScene = building + destinationRoom.Substring(2,1); //if input is TN270, the substring will take the 2 (end result: building + 2 = N2)
 
         DR = DataFromReact.Instance; //define instance of DR for use later
         //DR = GetComponent<DataFromReact>();
@@ -69,25 +50,23 @@ public class NavMeshLine : MonoBehaviour
         {
             DontDestroyOnLoad(child.gameObject);
         }
+        // DontDestroyOnLoad(lb);
+        // DontDestroyOnLoad(ls);
 
-        //SceneManager.LoadScene("Scenes/N2"); //start script on second floor (contains ReactToUnity game object)
-        //Debug.Log("scene 2 loaded");
-
-        // // Find all objects of type YourScript in the scene
-        // NavMeshLine[] scriptInstances = FindObjectsOfType<NavMeshLine>();
-
-        // // Check if there is more than one instance
-        // if (scriptInstances.Length > 1)
-        // {
-        //     Debug.Log("Multiple instances of YourScript found in the scene.");
-        // }
+        //load the floor entered by the user. This will then be kept track of by Scene currentScene = SceneManager.GetActiveScene(); in the Update()
+        currentScene = SceneManager.GetActiveScene();
+        if(DR.floor != "" && currentScene.name != DR.floor){ //only used when beacons are found
+            SceneManager.LoadScene(DR.floor);
+        }
     }
 
     void Update()
     {
         //Debug.Log(DR.messageText.text);
         string sceneToLoad = "";
-        Scene currentScene = SceneManager.GetActiveScene();
+        currentScene = SceneManager.GetActiveScene();
+        accessibileRoute = DR.accessibility;
+        destinationScene = building + DR.destination.Substring(2,1); //if input is TN270, the substring will take the 2 (end result: building + 2 = N2)
 
         // set originRoom and destinationRoom strings to values from DataFromReact
         if (DR.destination != null && DR.beacon1 != null && DR.beacon1 != "") // checks if the closest beacon is valid
@@ -145,10 +124,7 @@ public class NavMeshLine : MonoBehaviour
                 destinationRoom = DR.destination;
             }
 
-
-
-
-        if ( (sceneToLoad != currentScene.name) && (sceneToLoad != lastScene)) { //switch scenes if needed
+        if ( (sceneToLoad != currentScene.name) && (sceneToLoad != lastScene) && sceneToLoad != "") { //switch scenes if needed
             lastScene = currentScene.name; // Update what the lastScene was
             SceneManager.LoadScene(sceneToLoad);
         }
