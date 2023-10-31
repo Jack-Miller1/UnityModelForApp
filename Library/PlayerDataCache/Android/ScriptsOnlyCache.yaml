@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - FollowUserButtonManager
     - MoveAlongLine
     - NavMeshLine
+    - Readme
     - TopDownCamera
     Unity.AdaptivePerformance.Editor.dll:
     - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
@@ -86,20 +87,14 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3914}
     - Class: 114
-      Script: {instanceID: 7544}
-    - Class: 114
       Script: {instanceID: 24910}
     - Class: 114
       Script: {instanceID: 24912}
     - Class: 115
       Script: {instanceID: 0}
-    - Class: 120
-      Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 157
-      Script: {instanceID: 0}
-    - Class: 195
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
@@ -230,20 +225,14 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3914}
     - Class: 114
-      Script: {instanceID: 7544}
-    - Class: 114
       Script: {instanceID: 24910}
     - Class: 114
       Script: {instanceID: 24912}
     - Class: 115
       Script: {instanceID: 0}
-    - Class: 120
-      Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 157
-      Script: {instanceID: 0}
-    - Class: 195
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
@@ -638,7 +627,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 956d6a295dee4d50fc7314e7e4e955dd
+      Hash: afc5b93a7b192de2dcb3832fe35a5c7e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MoveAlongLine

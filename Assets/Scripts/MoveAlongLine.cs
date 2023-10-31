@@ -27,7 +27,7 @@ public class MoveAlongLine : MonoBehaviour
 
     void Update() {
     
-        distanceAlongLine += speed * Time.deltaTime;
+        //distanceAlongLine += speed * Time.deltaTime;
 
         if (distanceAlongLine > lineRenderer.positionCount - 1) {
             distanceAlongLine = 0;

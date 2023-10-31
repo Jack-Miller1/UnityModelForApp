@@ -45,25 +45,21 @@ public class NavMeshLine : MonoBehaviour
         DR = DataFromReact.Instance; //define instance of DR for use later
         //DR = GetComponent<DataFromReact>();
 
-        DontDestroyOnLoad(DR.gameObject); //make sure ReactToUnity doesn't get destroyed when loading a new scene
-        foreach (Transform child in DR.transform) //make sure each child object of ReactToUnity is also not destroyed
-        {
-            DontDestroyOnLoad(child.gameObject);
-        }
+        DontDestroyOnLoad(DR.gameObject); //make sure ReactToUnity, and its child objects don't get destroyed when loading a new scene
         DontDestroyOnLoad(lb);
         DontDestroyOnLoad(ls);
 
         //load the floor entered by the user. This will then be kept track of by Scene currentScene = SceneManager.GetActiveScene(); in the Update()
-        currentScene = SceneManager.GetActiveScene();
-        if(DR.floor != "" && currentScene.name != DR.floor){ //only used when beacons are found
-            SceneManager.LoadScene(DR.floor);
-        }
+        // currentScene = SceneManager.GetActiveScene();
+        // if(DR.floor != "" && currentScene.name != DR.floor){ //only used when beacons are found
+        //     SceneManager.LoadScene(DR.floor);
+        // }
     }
 
     void Update()
     {
         //Debug.Log(DR.messageText.text);
-        string sceneToLoad = "";
+        string sceneToLoad = DR.floor;
         currentScene = SceneManager.GetActiveScene();
         accessibileRoute = DR.accessibility;
         destinationScene = building + DR.destination.Substring(2,1); //if input is TN270, the substring will take the 2 (end result: building + 2 = N2)
