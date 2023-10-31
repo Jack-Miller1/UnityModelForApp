@@ -128,7 +128,7 @@ public class NavMeshLine : MonoBehaviour
         origin = GameObject.Find(originRoom);  // "convert" string into game object
 
         if (GameObject.Find(destinationRoom) == null){
-            Debug.Log("destinationRoom: " + destinationRoom);
+            //Debug.Log("destinationRoom: " + destinationRoom);
             if (accessibileRoute){
                 destination = elevator = FindNearest(origin.transform.position, "Elevator");
             }
