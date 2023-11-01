@@ -13,7 +13,7 @@ public class FollowUserButtonManager : MonoBehaviour
 
    void Start()
    {
-      button = FindObjectOfType<Button>();
+      button = GameObject.Find("Follow User Button").GetComponent<Button>();
       followOn = true;
    }
 

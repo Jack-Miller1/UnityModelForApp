@@ -5,12 +5,12 @@ using UnityEngine;
 public class TopDownCamera : MonoBehaviour
 {
     private static readonly float PanSpeed = 1800f;
-    private static readonly float ZoomSpeedTouch = 0.5f;
+    private static readonly float ZoomSpeedTouch = 0.2f;
     private static readonly float ZoomSpeedMouse = 40f;
 
     private static readonly float[] BoundsX = new float[] { -4900f, 4900f }; //left to right
     private static readonly float[] BoundsZ = new float[] { -3000f, 3000f }; //up and down
-    private static readonly float[] ZoomBounds = new float[] { 10f, 150f };  // {zoomed in, zoomed out}
+    private static readonly float[] ZoomBounds = new float[] { 40f, 160f };  // {zoomed in, zoomed out}
 
     private Camera cam;
 

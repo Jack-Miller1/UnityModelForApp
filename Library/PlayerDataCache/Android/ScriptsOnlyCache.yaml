@@ -2,18 +2,23 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - DataFromReact
+    - FloorChangeButtonManager
     - FollowUserButtonManager
     - MoveAlongLine
     - NavMeshLine
-    - Readme
+    - ReactToUnityManager
     - TopDownCamera
     Unity.AdaptivePerformance.Editor.dll:
     - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
     Unity.AdaptivePerformance.Samsung.Android.dll:
     - UnityEngine.AdaptivePerformance.Samsung.Android.SamsungAndroidProviderSettings
+    Unity.AdaptivePerformance.Simulator.Editor.dll:
+    - UnityEditor.AdaptivePerformance.Simulator.Editor.SimulatorProviderSettings
     Unity.AdaptivePerformance.dll:
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceGeneralSettings
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceManagerSettings
+    Unity.Mobile.AndroidLogcat.Editor.dll:
+    - Unity.Android.Logcat.AndroidLogcatManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -50,7 +55,75 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: FollowUserButtonManager
     methodName: OnButtonPress
+  - assembly: Assembly-CSharp
+    fullTypeName: FloorChangeButtonManager
+    methodName: OnButtonPress
   sceneClasses:
+    Assets/Scenes/Initial Scene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1628}
+    - Class: 114
+      Script: {instanceID: 2648}
+    - Class: 114
+      Script: {instanceID: 2858}
+    - Class: 114
+      Script: {instanceID: 3088}
+    - Class: 114
+      Script: {instanceID: 3158}
+    - Class: 114
+      Script: {instanceID: 4302}
+    - Class: 114
+      Script: {instanceID: 5384}
+    - Class: 114
+      Script: {instanceID: 5686}
+    - Class: 114
+      Script: {instanceID: 5912}
+    - Class: 114
+      Script: {instanceID: 6174}
+    - Class: 114
+      Script: {instanceID: 7548}
+    - Class: 114
+      Script: {instanceID: 918382}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 120
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 195
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/N1.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -83,13 +156,9 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3880}
+      Script: {instanceID: 3882}
     - Class: 114
-      Script: {instanceID: 3914}
-    - Class: 114
-      Script: {instanceID: 24910}
-    - Class: 114
-      Script: {instanceID: 24912}
+      Script: {instanceID: 3916}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -134,56 +203,18 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1626}
+      Script: {instanceID: 3882}
     - Class: 114
-      Script: {instanceID: 2646}
-    - Class: 114
-      Script: {instanceID: 2856}
-    - Class: 114
-      Script: {instanceID: 3086}
-    - Class: 114
-      Script: {instanceID: 3156}
-    - Class: 114
-      Script: {instanceID: 3880}
-    - Class: 114
-      Script: {instanceID: 3914}
-    - Class: 114
-      Script: {instanceID: 5380}
-    - Class: 114
-      Script: {instanceID: 5682}
-    - Class: 114
-      Script: {instanceID: 5908}
-    - Class: 114
-      Script: {instanceID: 6170}
-    - Class: 114
-      Script: {instanceID: 7544}
-    - Class: 114
-      Script: {instanceID: 24910}
-    - Class: 114
-      Script: {instanceID: 24912}
-    - Class: 114
-      Script: {instanceID: 24914}
+      Script: {instanceID: 3916}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 120
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
-    - Class: 195
-      Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
     - Class: 208
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
       Script: {instanceID: 0}
     - Class: 238
       Script: {instanceID: 0}
@@ -221,13 +252,9 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3880}
+      Script: {instanceID: 3882}
     - Class: 114
-      Script: {instanceID: 3914}
-    - Class: 114
-      Script: {instanceID: 24910}
-    - Class: 114
-      Script: {instanceID: 24912}
+      Script: {instanceID: 3916}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -627,7 +654,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: afc5b93a7b192de2dcb3832fe35a5c7e
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MoveAlongLine
@@ -709,6 +736,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: DictionaryAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FloorChangeButtonManager
   - hash:
       serializedVersion: 2
       Hash: 6980e81ddc615a861309d2d659cc3760
@@ -915,7 +948,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: b499ec908b7eefb96e07e5c97c67d4be
+      Hash: cfcee2c9f02dc288b42c22f4be29c8c9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DataFromReact
@@ -1195,9 +1228,16 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ReactToUnityManager
   platform: 13
   scenePathNames:
-  - Assets/Scenes/N2.unity
+  - Assets/Scenes/Initial Scene.unity
   - Assets/Scenes/N1.unity
+  - Assets/Scenes/N2.unity
   - Assets/Scenes/N3.unity
   playerPath: C:/Users/turtl/OneDrive/Documents/GitHub/WayfindingApp/unity/builds/android

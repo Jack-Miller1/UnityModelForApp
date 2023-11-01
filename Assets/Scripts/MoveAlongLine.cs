@@ -9,7 +9,7 @@ public class MoveAlongLine : MonoBehaviour
     public static LineRenderer lineRenderer;
 
     // public LineRenderer lineRenderer = NavMeshLine.Instance.lineRendererSmall; //now uses specific instance from NavMeshLine
-    public float speed = 1.0F; 
+    //public float speed; 
 
     private float distanceAlongLine = 0;
 
@@ -20,14 +20,17 @@ public class MoveAlongLine : MonoBehaviour
 
     // private Vector3[] midpoints;
 
+    private DataFromReact DR; // used DR as name for DataFromReact (allows access to variables from DataFromReact.cs)
+
     private void Start()
     {
         lineRenderer = GameObject.Find("LineRendererBig").GetComponent<LineRenderer>();
+        DR = DataFromReact.Instance; //define instance of DataFromReact script to make sure all data comes from same script
     }
 
     void Update() {
     
-        //distanceAlongLine += speed * Time.deltaTime;
+        distanceAlongLine += DR.speed * Time.deltaTime;
 
         if (distanceAlongLine > lineRenderer.positionCount - 1) {
             distanceAlongLine = 0;

@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using TMPro;
 
 
 public class DataFromReact : MonoBehaviour
 {
     public Text messageText;
-    public string origin = "TN241"; //orgin that comes from React Native (there is a different origin used later)
-    public string destination = "TN246";
+    public string origin; //orgin that comes from React Native (there is a different origin used later)
+    public string destination;
     public string beacon1;
     public bool accessibility;
     public string floor;
-    //public TextMeshProUGUI textMeshProUGUI;
-    // public string Hello;
+    public float speed;
+    
+    public bool floorChangeVisible = false;
+    public bool changeFloorClicked = false;
 
     private static DataFromReact instance;
 
@@ -33,8 +34,8 @@ public class DataFromReact : MonoBehaviour
                     //GameObject obj = new GameObject("ReactToUnity"); // previously just GameObject()
                     //obj.name = typeof(DataFromReact).Name;   // This line will name the object
 
-                    GameObject obj = GameObject.Find("ReactToUnity"); // Find the existing object named "ReactToUnity" in the scene
-                    instance = obj.AddComponent<DataFromReact>();
+                    GameObject GameObj = GameObject.Find("ReactToUnity"); // Find the existing object named "ReactToUnity" in the scene
+                    instance = GameObj.AddComponent<DataFromReact>();
                 }
             }
             return instance;
@@ -67,9 +68,8 @@ public class DataFromReact : MonoBehaviour
     // }
 
     void Start(){
-        messageText.text = "Goodbye";
-
-        //InvokeRepeating("GetDatas", 0f, 0.5f); // runs GetDatas every 500 ms  (not needed as setInterval in UnityApp.tsx accomplishes the same thing)
+        messageText.text = "";
+        //InvokeRepeating("GetData", 0f, 0.5f); // runs GetDatas every 500 ms  (not needed as setInterval in UnityApp.tsx accomplishes the same thing)
         
         // textMeshProUGUI = new TextMeshProUGUI();
         // if (textMeshProUGUI != null) {
@@ -89,34 +89,65 @@ public class DataFromReact : MonoBehaviour
         public string beacon1;
         public string accessibility;
         public string floor;
+        public string speed;
     }
-    // As you can see here is the name of the function that we get the data.
-    // it should have the same name in RN function postMessage.
+
+    // Here is the name of the function that gets the data.
+    // It should have the same name in RN function postMessage.
     public void GetData(string json)
     {
-        //textMeshProUGUI.text = json;
         JsonObject obj = JsonUtility.FromJson<JsonObject>(json);
-        origin = obj.origin;
-        destination = obj.destination;
-        beacon1 = obj.beacon1;
-        if (obj.accessibility == "true"){
-            accessibility = true;
+        string originScene;
+        string destinationScene;
+
+        // origin and destination are sent with T in front if they are a room (ex: TN270) by React Native side
+        if (obj.origin[0] == 'T')
+        {
+            origin = obj.origin.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
+            originScene = origin.Substring(0,2); // ex: N270 -> N2
         }
         else{
+            origin = obj.origin;
+            originScene = origin.Substring(0,2); // ex: N270 -> N2
+        }
+
+        if (obj.destination[0] == 'T')
+        {
+            destination = obj.destination.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
+            destinationScene = destination.Substring(0,2); // ex: N270 -> N2
+        }
+        else{
+            destination = obj.destination;
+            destinationScene = destination.Substring(0,2); // ex: N270 -> N2
+        }
+
+        //origin = obj.origin;
+        //destination = obj.destination;
+        beacon1 = obj.beacon1;
+
+        if (obj.accessibility == "true"){
+            accessibility = true;
+            //messageText.text = "Please use the elevator to go to floor " + floor + ". \nPress ok after reaching the correct floor.";
+            // floorChangeVisible = true;
+        }
+        // else if (originScene != null && originScene != destinationScene ) {
+        //     accessibility = false;
+        //     messageText.text = "Please use the stairs to go to floor " + floor + ".";
+        // }
+        // else if (originScene == null && obj.floor != destinationScene) {
+        //     accessibility = false;
+        //     messageText.text = "Please use the stairs to go to floor " + floor + ".";
+        // }
+        else{
             accessibility = false;
+            // floorChangeVisible = false;
         }
         floor = obj.floor;
+        speed = float.Parse(obj.speed);
 
-        // Update the Unity UI Text component
-        messageText.text  = "Origin: " + origin + ", Destination: " + destination +
-                            ", Beacon ID1: " + beacon1 + ", Accessibility: " + accessibility + ", Floor: " + floor;
-        Debug.Log("Message received: " + messageText.text);
-
-        // if (textMeshProUGUI != null)
-        // {
-        //     textMeshProUGUI.text  = "Origin: " + originR + "\nDestination: " + destinationR +
-        //                     "\nBeacon ID: " + beaconID1R + "\nDistance: " + distance1R;
-        // }
-        // Debug.Log("Message received: " + textMeshProUGUI.text);
+        // // Update the Unity UI Text component
+        // messageText.text  = "Origin: " + origin + ", Destination: " + destination +
+        //                     ", Beacon ID1: " + beacon1 + ", Accessibility: " + accessibility + ", Floor: " + floor;
+        //Debug.Log("Message received: " + messageText.text);
     }
 }
