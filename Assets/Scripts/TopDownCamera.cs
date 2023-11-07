@@ -5,7 +5,7 @@ using UnityEngine;
 public class TopDownCamera : MonoBehaviour
 {
     private static readonly float PanSpeed = 1800f;
-    private static readonly float ZoomSpeedTouch = 0.2f;
+    private static readonly float ZoomSpeedTouch = 0.1f;
     private static readonly float ZoomSpeedMouse = 40f;
 
     private static readonly float[] BoundsX = new float[] { -4900f, 4900f }; //left to right
@@ -92,7 +92,7 @@ public class TopDownCamera : MonoBehaviour
                     // distance between the previous positions.
                     float newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
                     float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
-                    float offset = oldDistance - newDistance;
+                    float offset = newDistance - oldDistance;
 
                     ZoomCamera(offset, ZoomSpeedTouch);
 
@@ -126,9 +126,12 @@ public class TopDownCamera : MonoBehaviour
 
     void PanCamera(Vector3 newPanPosition)
     {
+        // Calculate the dynamic pan speed factor based on the camera's field of view.
+        float dynamicPanSpeed = PanSpeed * (cam.fieldOfView / ZoomBounds[0]);
+
         // Determine how much to move the camera
         Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
-        Vector3 move = new Vector3(offset.x * PanSpeed, 0, offset.y * PanSpeed);
+        Vector3 move = new Vector3(offset.x * dynamicPanSpeed, 0, offset.y * dynamicPanSpeed);
 
         // Perform the movement
         transform.Translate(move, Space.World);

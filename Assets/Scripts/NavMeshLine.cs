@@ -13,7 +13,7 @@ public class NavMeshLine : MonoBehaviour
     public static GameObject destination;      // origin and destination are used as game objects
 
     private string originRoom;
-    private string destinationRoom;            // originRoom and destinationRoom are strings. Meanwhile, originR and destinationR will be taken as strings from DataFromReact.cs
+    private string destinationRoom;            // originRoom and destinationRoom are strings. Meanwhile, DR.origin and DR.destination will be taken as strings from DataFromReact.cs
     public string building = "N";
 
     public static LineRenderer lineRendererBig;
@@ -52,7 +52,7 @@ public class NavMeshLine : MonoBehaviour
         DontDestroyOnLoad(ls);
 
         //load the floor entered by the user. This will then be kept track of by Scene currentScene = SceneManager.GetActiveScene(); in the Update()
-        sceneToLoad = DR.floor; //DR.floor will only be used when beacons are found
+        //sceneToLoad = DR.floor; //DR.floor will only be used when beacons are found
         // DR.currentFloor = DR.floor;
         DR.floorChangeVisible = false;
         //lastFloor = DR.floor;
@@ -63,6 +63,10 @@ public class NavMeshLine : MonoBehaviour
         //Debug.Log(DR.messageText.text);
         //string sceneToLoad = DR.floor;
         currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Initial"){ //make sure the scene changes from the initial scene
+            SceneManager.LoadScene(DR.floor);
+        }
+
         accessibileRoute = DR.accessibility;
         destinationScene = building + DR.destination.Substring(1,1); //if input is N270, the substring will take the 2 (end result: building + 2 = N2)
 
@@ -102,7 +106,7 @@ public class NavMeshLine : MonoBehaviour
             //     sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
             // }
             originRoom = DR.origin;
-            sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
+            sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> N2
         }
 
         destinationRoom = DR.destination;
@@ -118,10 +122,10 @@ public class NavMeshLine : MonoBehaviour
             sceneToLoad = destinationScene;
         }
 
-        if ( (sceneToLoad != currentScene.name) && sceneToLoad != "") { //switch scenes if needed           //&& (sceneToLoad != lastScene)
+        if ( (sceneToLoad != currentScene.name) && sceneToLoad != "" && sceneToLoad != null) { //switch scenes if needed           //&& (sceneToLoad != lastScene)
             lastScene = currentScene.name; // Update what the lastScene was
             SceneManager.LoadScene(sceneToLoad);
-            //Debug.Log("scene loaded: " + sceneToLoad);
+            Debug.Log("scene loaded: " + sceneToLoad);
         }
 
         origin = GameObject.Find(originRoom);  // "convert" string into game object

@@ -6,19 +6,14 @@ ScriptsOnlyBuild:
     - FollowUserButtonManager
     - MoveAlongLine
     - NavMeshLine
-    - ReactToUnityManager
     - TopDownCamera
     Unity.AdaptivePerformance.Editor.dll:
     - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
     Unity.AdaptivePerformance.Samsung.Android.dll:
     - UnityEngine.AdaptivePerformance.Samsung.Android.SamsungAndroidProviderSettings
-    Unity.AdaptivePerformance.Simulator.Editor.dll:
-    - UnityEditor.AdaptivePerformance.Simulator.Editor.SimulatorProviderSettings
     Unity.AdaptivePerformance.dll:
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceGeneralSettings
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceManagerSettings
-    Unity.Mobile.AndroidLogcat.Editor.dll:
-    - Unity.Android.Logcat.AndroidLogcatManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -59,7 +54,7 @@ ScriptsOnlyBuild:
     fullTypeName: FloorChangeButtonManager
     methodName: OnButtonPress
   sceneClasses:
-    Assets/Scenes/Initial Scene.unity:
+    Assets/Scenes/Initial.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -81,29 +76,27 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1628}
+      Script: {instanceID: 1626}
     - Class: 114
-      Script: {instanceID: 2648}
+      Script: {instanceID: 2644}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2854}
     - Class: 114
-      Script: {instanceID: 3088}
+      Script: {instanceID: 3084}
     - Class: 114
-      Script: {instanceID: 3158}
+      Script: {instanceID: 3154}
     - Class: 114
-      Script: {instanceID: 4302}
+      Script: {instanceID: 4298}
     - Class: 114
-      Script: {instanceID: 5384}
+      Script: {instanceID: 5380}
     - Class: 114
-      Script: {instanceID: 5686}
+      Script: {instanceID: 5682}
     - Class: 114
-      Script: {instanceID: 5912}
+      Script: {instanceID: 5908}
     - Class: 114
-      Script: {instanceID: 6174}
+      Script: {instanceID: 6170}
     - Class: 114
-      Script: {instanceID: 7548}
-    - Class: 114
-      Script: {instanceID: 918382}
+      Script: {instanceID: 7544}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -156,9 +149,9 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3882}
+      Script: {instanceID: 3878}
     - Class: 114
-      Script: {instanceID: 3916}
+      Script: {instanceID: 3912}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -203,9 +196,9 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3882}
+      Script: {instanceID: 3878}
     - Class: 114
-      Script: {instanceID: 3916}
+      Script: {instanceID: 3912}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -252,9 +245,9 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3882}
+      Script: {instanceID: 3878}
     - Class: 114
-      Script: {instanceID: 3916}
+      Script: {instanceID: 3912}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1228,15 +1221,9 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ReactToUnityManager
   platform: 13
   scenePathNames:
-  - Assets/Scenes/Initial Scene.unity
+  - Assets/Scenes/Initial.unity
   - Assets/Scenes/N1.unity
   - Assets/Scenes/N2.unity
   - Assets/Scenes/N3.unity

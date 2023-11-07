@@ -97,28 +97,28 @@ public class DataFromReact : MonoBehaviour
     public void GetData(string json)
     {
         JsonObject obj = JsonUtility.FromJson<JsonObject>(json);
-        string originScene;
-        string destinationScene;
+        //string originScene;
+        //string destinationScene;
 
         // origin and destination are sent with T in front if they are a room (ex: TN270) by React Native side
-        if (obj.origin[0] == 'T')
+        if (obj.origin != null && obj.origin != "" && obj.origin[0] == 'T')
         {
             origin = obj.origin.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
-            originScene = origin.Substring(0,2); // ex: N270 -> N2
+            //originScene = origin.Substring(0,2); // ex: N270 -> N2
         }
         else{
             origin = obj.origin;
-            originScene = origin.Substring(0,2); // ex: N270 -> N2
+            //originScene = origin.Substring(0,2); // ex: N270 -> N2
         }
 
-        if (obj.destination[0] == 'T')
+        if (obj.destination != null && obj.destination != "" && obj.destination[0] == 'T')
         {
             destination = obj.destination.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
-            destinationScene = destination.Substring(0,2); // ex: N270 -> N2
+            //destinationScene = destination.Substring(0,2); // ex: N270 -> N2
         }
         else{
             destination = obj.destination;
-            destinationScene = destination.Substring(0,2); // ex: N270 -> N2
+            //destinationScene = destination.Substring(0,2); // ex: N270 -> N2
         }
 
         //origin = obj.origin;
@@ -146,7 +146,7 @@ public class DataFromReact : MonoBehaviour
         speed = float.Parse(obj.speed);
 
         // // Update the Unity UI Text component
-        // messageText.text  = "Origin: " + origin + ", Destination: " + destination +
+        //messageText.text  = "Origin: " + origin + ", Destination: " + destination +
         //                     ", Beacon ID1: " + beacon1 + ", Accessibility: " + accessibility + ", Floor: " + floor;
         //Debug.Log("Message received: " + messageText.text);
     }

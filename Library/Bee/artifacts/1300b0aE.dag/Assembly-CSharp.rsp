@@ -362,7 +362,6 @@
 "Assets/Scripts/FollowUserButtonManager.cs"
 "Assets/Scripts/MoveAlongLine.cs"
 "Assets/Scripts/NavMeshLine.cs"
-"Assets/Scripts/ReactToUnityManager.cs"
 "Assets/Scripts/TopDownCamera.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
