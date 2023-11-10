@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TopDownCamera : MonoBehaviour
 {
-    private static readonly float PanSpeed = 1800f;
+    private static readonly float PanSpeed = 1000f;
     private static readonly float ZoomSpeedTouch = 0.1f;
     private static readonly float ZoomSpeedMouse = 40f;
 
     private static readonly float[] BoundsX = new float[] { -4900f, 4900f }; //left to right
     private static readonly float[] BoundsZ = new float[] { -3000f, 3000f }; //up and down
-    private static readonly float[] ZoomBounds = new float[] { 40f, 160f };  // {zoomed in, zoomed out}
+    private static readonly float[] ZoomBounds = new float[] { 40f, 165f };  // {zoomed in, zoomed out}
 
     private Camera cam;
 
@@ -155,19 +155,4 @@ public class TopDownCamera : MonoBehaviour
 
         cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
     }
-    //public GameObject target; // the object to follow
-
-    //void Start()
-    //{
-    //    target = GameObject.Find("User");
-    //}
-
-    //void Update()
-    //{
-    //    // Update the camera's position and rotation to follow the target.
-    //    Vector3 targetPosition = target.transform.position;
-    //    Vector3 cameraPosition = new Vector3(targetPosition.x, targetPosition.y + 800f, targetPosition.z);
-    //    transform.position = cameraPosition;
-    //    transform.rotation = Quaternion.LookRotation(Vector3.down, target.transform.forward);
-    //}
 }

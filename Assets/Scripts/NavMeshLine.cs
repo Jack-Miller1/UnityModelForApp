@@ -8,12 +8,12 @@ using System.IO;
 
 public class NavMeshLine : MonoBehaviour
 {
-    private DataFromReact DR;                  // used DR as name for DataFromReact (allows access to variables from DataFromReact.cs)
+    private DataFromReact DR;             // used DR as name for DataFromReact (allows access to variables from DataFromReact.cs)
     public static GameObject origin;
-    public static GameObject destination;      // origin and destination are used as game objects
+    public static GameObject destination; // origin and destination are used as game objects
 
     private string originRoom;
-    private string destinationRoom;            // originRoom and destinationRoom are strings. Meanwhile, DR.origin and DR.destination will be taken as strings from DataFromReact.cs
+    private string destinationRoom;       // originRoom and destinationRoom are strings. Meanwhile, DR.origin and DR.destination will be taken as strings from DataFromReact.cs
     public string building = "N";
 
     public static LineRenderer lineRendererBig;
@@ -25,8 +25,8 @@ public class NavMeshLine : MonoBehaviour
     private string destinationScene;
     private Scene currentScene;
     
-    private GameObject stairs;
-    private GameObject elevator;
+    private string stairs;
+    private string elevator;
 
     private static NavMeshLine instance;
 
@@ -45,23 +45,16 @@ public class NavMeshLine : MonoBehaviour
         // destinationScene = building + destinationRoom.Substring(2,1); //if input is TN270, the substring will take the 2 (end result: building + 2 = N2)
 
         DR = DataFromReact.Instance; //define instance of DataFromReact script to make sure all data comes from same script
-        //DR = GetComponent<DataFromReact>();
 
         DontDestroyOnLoad(DR.gameObject); //make sure ReactToUnity and its child objects don't get destroyed when loading a new scene
         DontDestroyOnLoad(lb); //make sure the line renderers don't get destroyed when loading a new scene
         DontDestroyOnLoad(ls);
 
-        //load the floor entered by the user. This will then be kept track of by Scene currentScene = SceneManager.GetActiveScene(); in the Update()
-        //sceneToLoad = DR.floor; //DR.floor will only be used when beacons are found
-        // DR.currentFloor = DR.floor;
         DR.floorChangeVisible = false;
-        //lastFloor = DR.floor;
     }
 
     void Update()
     {
-        //Debug.Log(DR.messageText.text);
-        //string sceneToLoad = DR.floor;
         currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Initial"){ //make sure the scene changes from the initial scene
             SceneManager.LoadScene(DR.floor);
@@ -96,43 +89,42 @@ public class NavMeshLine : MonoBehaviour
         }
         else if (DR.origin != null && DR.destination != null) // uses the closest room entered by the user in React Native if no beacons found
         {
-            // if (DR.origin[0] == 'T')
-            // {
-            //     originRoom = DR.origin.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
-            //     sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
-            // }
-            // else{
-            //     originRoom = DR.origin;
-            //     sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> Scenes/N2
-            // }
             originRoom = DR.origin;
             sceneToLoad = originRoom.Substring(0,2); // ex: N270 -> N2
         }
 
         destinationRoom = DR.destination;
-        // if (DR.destination[0] == 'T')
-        // {
-        //     destinationRoom = DR.destination.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
-        // }
-        // else{
-        //     destinationRoom = DR.destination;
-        // }
+
 
         if(DR.changeFloorClicked == true){
             sceneToLoad = destinationScene;
         }
 
-        if ( (sceneToLoad != currentScene.name) && sceneToLoad != "" && sceneToLoad != null) { //switch scenes if needed           //&& (sceneToLoad != lastScene)
+        if ( (sceneToLoad != currentScene.name) && sceneToLoad != "" && sceneToLoad != null) { //switch scenes if needed
             lastScene = currentScene.name; // Update what the lastScene was
             SceneManager.LoadScene(sceneToLoad);
             Debug.Log("scene loaded: " + sceneToLoad);
         }
 
-        origin = GameObject.Find(originRoom);  // "convert" string into game object
+        // "convert" string into game object
+        if (GameObject.Find(originRoom) == null){
+            if (accessibileRoute){
+
+                origin = GameObject.Find(elevator);
+            }
+            else
+            {
+                origin = GameObject.Find(stairs);
+            }
+        }else
+        {
+            origin = GameObject.Find(originRoom);
+        }
 
         if (GameObject.Find(destinationRoom) == null){
             if (accessibileRoute){
-                destination = elevator = FindNearest(origin.transform.position, "Elevator");
+                destination = FindNearest(origin.transform.position, "Elevator");
+                elevator = destination.name;
                 if (!DR.changeFloorClicked){
                     DR.messageText.text = "Please use the elevator to go to floor " + destinationScene + ". Then, press update.";
                     DR.floorChangeVisible = true;
@@ -140,7 +132,8 @@ public class NavMeshLine : MonoBehaviour
             }
             else
             {
-                destination = stairs = FindNearest(origin.transform.position, "Stairs");
+                destination = FindNearest(origin.transform.position, "Stairs");
+                stairs = destination.name;
                 DR.messageText.text = "Please use the stairs to go to floor " + destinationScene + ".";
             }
         }else
@@ -151,21 +144,21 @@ public class NavMeshLine : MonoBehaviour
 
         NavMeshPath navMeshPath = new NavMeshPath();
 
-        // Use the current origin and destination to update the line
+        //Use the current origin and destination to update the line
         calculatePath(origin, destination, navMeshPath, lineRendererBig, 60.0f);
         calculatePath(origin, destination, navMeshPath, lineRendererSmall, 1.0f);
 
-        //Switches scene when user clicks enter (testing purposes)
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            if (accessibileRoute){
-                originRoom = elevator.name;
-            }else{
-                originRoom = stairs.name;
-            }
+        // //Switches scene when user clicks enter (testing purposes)
+        // if (Input.GetKeyDown(KeyCode.Return))
+        // {
+        //     if (accessibileRoute){
+        //         originRoom = elevator;
+        //     }else{
+        //         originRoom = stairs;
+        //     }
             
-            SceneManager.LoadScene(destinationScene);
-        }
+        //     SceneManager.LoadScene(destinationScene);
+        // }
 
     }
 

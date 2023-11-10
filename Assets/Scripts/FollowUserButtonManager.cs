@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FollowUserButtonManager : MonoBehaviour
 {
    public bool followOn;
-   private int numPresses = 0; //keep track of the number of button presses, alternate between green and red
+   private bool isRed = false; //button will either be green or red
    private Button button;
    Color redColor = new Color(1.0f, 0.0f, 0.0f, 0.9f); //R,G,B,Opacity
    Color greenColor = new Color(0.0f, 1.0f, 0.0f, 0.9f);
@@ -21,9 +21,9 @@ public class FollowUserButtonManager : MonoBehaviour
       followOn = !followOn;
 
       ColorBlock colors = button.colors;
-      numPresses++; // Button was pressed
+      isRed = !isRed; // Button was pressed, alternate between green and red
 
-      if (numPresses % 2 != 0) {
+      if (isRed) {
          colors.normalColor = redColor;
          colors.selectedColor = redColor;
          colors.pressedColor = greenColor;

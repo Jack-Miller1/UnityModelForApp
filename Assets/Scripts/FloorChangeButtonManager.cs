@@ -17,7 +17,7 @@ public class FloorChangeButtonManager : MonoBehaviour
 
     void Update()
     {
-        if(!DR.accessibility){
+        if(!DR.accessibility){ //toggle the button's visibility based on if accessibility is enabled or not
             DR.floorChangeVisible = false;
         }
         button.gameObject.SetActive(DR.floorChangeVisible);

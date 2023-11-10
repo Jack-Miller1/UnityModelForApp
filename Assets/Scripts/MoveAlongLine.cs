@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class MoveAlongLine : MonoBehaviour
 {
-    // Start is called before the first frame update
-    //public LineRenderer lineRenderer = NavMeshLine.lineRendererSmall;
     public static LineRenderer lineRenderer;
-
-    // public LineRenderer lineRenderer = NavMeshLine.Instance.lineRendererSmall; //now uses specific instance from NavMeshLine
-    //public float speed; 
-
+    
+    private string previousBeacon;
     private float distanceAlongLine = 0;
 
     Vector3 lineDirection;
@@ -24,17 +20,24 @@ public class MoveAlongLine : MonoBehaviour
 
     private void Start()
     {
-        lineRenderer = GameObject.Find("LineRendererBig").GetComponent<LineRenderer>();
+        lineRenderer = GameObject.Find("LineRendererSmall").GetComponent<LineRenderer>();
         DR = DataFromReact.Instance; //define instance of DataFromReact script to make sure all data comes from same script
+        if(DR.beacon1 != null && DR.beacon1 != ""){
+            previousBeacon = DR.beacon1;
+        }
     }
 
     void Update() {
-    
         distanceAlongLine += DR.speed * Time.deltaTime;
 
-        if (distanceAlongLine > lineRenderer.positionCount - 1) {
+        if (distanceAlongLine > lineRenderer.positionCount - 1) { //reset the user position on the line if it is before the starting point of the line
             distanceAlongLine = 0;
         }
+        if(DR.beacon1 != null && DR.beacon1 != "" && previousBeacon != DR.beacon1){ //reset the user position on the line when a new beacon is found
+            previousBeacon = DR.beacon1;
+            distanceAlongLine = 0;
+        }
+
         transform.position = Vector3.Lerp(lineRenderer.GetPosition(Mathf.FloorToInt(distanceAlongLine)), lineRenderer.GetPosition(Mathf.CeilToInt(distanceAlongLine)), distanceAlongLine % 1);
         transform.rotation = Quaternion.AngleAxis(angle, rotationAxis);
     }
