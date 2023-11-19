@@ -2340,6 +2340,30 @@ void RegisterAllStrippedInternalCalls()
 
 	//End Registrations for type : UnityEngine.LineRenderer
 
+	//Start Registrations for type : UnityEngine.LocationService
+
+		//System.Void UnityEngine.LocationService::GetLastHeading_Injected(UnityEngine.LocationService/HeadingInfo&)
+		void Register_UnityEngine_LocationService_GetLastHeading_Injected();
+		Register_UnityEngine_LocationService_GetLastHeading_Injected();
+
+		//System.Void UnityEngine.LocationService::SetDesiredAccuracy(System.Single)
+		void Register_UnityEngine_LocationService_SetDesiredAccuracy();
+		Register_UnityEngine_LocationService_SetDesiredAccuracy();
+
+		//System.Void UnityEngine.LocationService::SetDistanceFilter(System.Single)
+		void Register_UnityEngine_LocationService_SetDistanceFilter();
+		Register_UnityEngine_LocationService_SetDistanceFilter();
+
+		//System.Void UnityEngine.LocationService::SetHeadingUpdatesEnabled(System.Boolean)
+		void Register_UnityEngine_LocationService_SetHeadingUpdatesEnabled();
+		Register_UnityEngine_LocationService_SetHeadingUpdatesEnabled();
+
+		//System.Void UnityEngine.LocationService::StartUpdatingLocation()
+		void Register_UnityEngine_LocationService_StartUpdatingLocation();
+		Register_UnityEngine_LocationService_StartUpdatingLocation();
+
+	//End Registrations for type : UnityEngine.LocationService
+
 	//Start Registrations for type : UnityEngine.Material
 
 		//System.Boolean UnityEngine.Material::HasProperty(System.Int32)
@@ -2870,13 +2894,17 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Quaternion_Internal_FromEulerRad_Injected();
 		Register_UnityEngine_Quaternion_Internal_FromEulerRad_Injected();
 
+		//System.Void UnityEngine.Quaternion::Internal_ToEulerRad_Injected(UnityEngine.Quaternion&,UnityEngine.Vector3&)
+		void Register_UnityEngine_Quaternion_Internal_ToEulerRad_Injected();
+		Register_UnityEngine_Quaternion_Internal_ToEulerRad_Injected();
+
 		//System.Void UnityEngine.Quaternion::Inverse_Injected(UnityEngine.Quaternion&,UnityEngine.Quaternion&)
 		void Register_UnityEngine_Quaternion_Inverse_Injected();
 		Register_UnityEngine_Quaternion_Inverse_Injected();
 
-		//System.Void UnityEngine.Quaternion::LookRotation_Injected(UnityEngine.Vector3&,UnityEngine.Vector3&,UnityEngine.Quaternion&)
-		void Register_UnityEngine_Quaternion_LookRotation_Injected();
-		Register_UnityEngine_Quaternion_LookRotation_Injected();
+		//System.Void UnityEngine.Quaternion::Slerp_Injected(UnityEngine.Quaternion&,UnityEngine.Quaternion&,System.Single,UnityEngine.Quaternion&)
+		void Register_UnityEngine_Quaternion_Slerp_Injected();
+		Register_UnityEngine_Quaternion_Slerp_Injected();
 
 	//End Registrations for type : UnityEngine.Quaternion
 

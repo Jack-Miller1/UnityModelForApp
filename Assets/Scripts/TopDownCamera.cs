@@ -22,7 +22,13 @@ public class TopDownCamera : MonoBehaviour
 
     public GameObject target; // the object to follow when camera is locked
     public GameObject followButtonManager;
+    public GameObject compassButtonManager;
     public bool CameraLocked = true;
+    public bool compassRotationOn = true;
+    private float smoothFactor = 4f; //constant used to smooth out map rotation based on the compass
+
+    // Convert degrees, minutes, and seconds to decimal degrees
+    //private float magneticDeclination = 0f + 34f / 60f + 33f / 3600f; //magnetic declination for Mankato is 0° 34' 33"
 
     void Awake()
     {
@@ -33,6 +39,11 @@ public class TopDownCamera : MonoBehaviour
     {
         target = GameObject.Find("User");
         followButtonManager = GameObject.Find("Follow User");
+        compassButtonManager = GameObject.Find("Compass Button Text");
+        
+        //enable compass
+        Input.compass.enabled = true;
+        Input.location.Start();
     }
 
     void Update()
@@ -53,7 +64,37 @@ public class TopDownCamera : MonoBehaviour
             Vector3 targetPosition = target.transform.position;
             Vector3 cameraPosition = new Vector3(targetPosition.x, targetPosition.y + 800f, targetPosition.z);
             transform.position = cameraPosition;
-            transform.rotation = Quaternion.LookRotation(Vector3.down, target.transform.forward);
+            //transform.rotation = Quaternion.LookRotation(Vector3.down, target.transform.forward);
+
+            // Rotate the camera based on the compass direction
+            // float magneticHeading = Input.compass.magneticHeading;
+            // float trueNorthHeading = magneticHeading - magneticDeclination;
+            // Quaternion rotation = Quaternion.Euler(90f, trueNorthHeading, 0f); //for overhead camera
+            // transform.rotation = rotation;
+
+            // // Rotate the camera based on the compass direction
+            // float magneticHeading = Input.compass.trueHeading;
+            // Quaternion rotation = Quaternion.Euler(90f, magneticHeading, 0f); //for overhead camera
+            // //transform.rotation = rotation;
+            // transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * smoothFactor);
+
+            // // Update the camera's position to follow the target
+            // Vector3 targetPosition = target.transform.position;
+            // Vector3 cameraPosition = new Vector3(targetPosition.x, targetPosition.y + 800f, targetPosition.z);
+            // transform.position = cameraPosition;
+        }        
+    }
+
+    void LateUpdate(){
+        compassRotationOn = compassButtonManager.GetComponent<CompassButtonManager>().rotateOn;
+        if (compassRotationOn == true){
+            //float magneticHeading = Input.compass.trueHeading;
+            Quaternion rotation = Quaternion.Euler(90f, Input.compass.trueHeading + 270f, 0f); //for overhead camera (North at 270 degrees)
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * smoothFactor);
+        }
+        else{
+            //transform.rotation = Quaternion.LookRotation(Vector3.down, target.transform.forward);
+            transform.rotation = Quaternion.Euler(90f, 270f, 0f); //face North
         }
     }
 
@@ -131,8 +172,14 @@ public class TopDownCamera : MonoBehaviour
 
         // Determine how much to move the camera
         Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
-        Vector3 move = new Vector3(offset.x * dynamicPanSpeed, 0, offset.y * dynamicPanSpeed);
 
+    
+        // Use the camera's rotation to adjust the offset
+        offset = Quaternion.Euler(0, 0, -cam.transform.eulerAngles.y) * offset;
+
+        // Apply the pan speed to both horizontal and vertical movements
+        Vector3 move = new Vector3(offset.x * dynamicPanSpeed, 0, offset.y * dynamicPanSpeed);
+        
         // Perform the movement
         transform.Translate(move, Space.World);
 

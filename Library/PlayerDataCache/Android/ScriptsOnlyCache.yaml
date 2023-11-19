@@ -1,11 +1,13 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CompassButtonManager
     - DataFromReact
     - FloorChangeButtonManager
     - FollowUserButtonManager
     - MoveAlongLine
     - NavMeshLine
+    - TextFacingCamera
     - TopDownCamera
     Unity.AdaptivePerformance.Editor.dll:
     - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
@@ -48,6 +50,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
+    fullTypeName: CompassButtonManager
+    methodName: OnButtonPress
+  - assembly: Assembly-CSharp
     fullTypeName: FollowUserButtonManager
     methodName: OnButtonPress
   - assembly: Assembly-CSharp
@@ -88,15 +93,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4298}
     - Class: 114
-      Script: {instanceID: 5380}
+      Script: {instanceID: 5382}
     - Class: 114
-      Script: {instanceID: 5682}
+      Script: {instanceID: 5684}
     - Class: 114
-      Script: {instanceID: 5908}
+      Script: {instanceID: 5910}
     - Class: 114
-      Script: {instanceID: 6170}
+      Script: {instanceID: 6172}
     - Class: 114
-      Script: {instanceID: 7544}
+      Script: {instanceID: 7510}
+    - Class: 114
+      Script: {instanceID: 7548}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -152,6 +159,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3878}
     - Class: 114
       Script: {instanceID: 3912}
+    - Class: 114
+      Script: {instanceID: 4418}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -199,6 +208,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3878}
     - Class: 114
       Script: {instanceID: 3912}
+    - Class: 114
+      Script: {instanceID: 4418}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -248,6 +259,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3878}
     - Class: 114
       Script: {instanceID: 3912}
+    - Class: 114
+      Script: {instanceID: 4418}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -659,7 +672,7 @@ ScriptsOnlyBuild:
     className: AdaptiveViewDistance
   - hash:
       serializedVersion: 2
-      Hash: 1595f647f18954f6715c5bc8faf8fbad
+      Hash: 9bdb78b99ba37d92498a77bae83f812a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TopDownCamera
@@ -747,6 +760,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.AdaptivePerformance.Samsung.Android.dll
     namespaceName: UnityEngine.AdaptivePerformance.Samsung.Android
     className: SamsungAndroidProviderSettings
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TextFacingCamera
   - hash:
       serializedVersion: 2
       Hash: 75de60bccbd35c2e82026d4a60733734
@@ -941,7 +960,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: cfcee2c9f02dc288b42c22f4be29c8c9
+      Hash: caa53875af7accf7a409dae1bdb3fc94
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DataFromReact
@@ -1161,6 +1180,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseOverMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 6d1ba4b63ab6a1be558c55885edd8e25
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CompassButtonManager
   - hash:
       serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
