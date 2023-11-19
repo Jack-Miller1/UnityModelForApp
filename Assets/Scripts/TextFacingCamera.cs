@@ -14,7 +14,6 @@ public class TextFacingCamera : MonoBehaviour
     void Update()
     {
         // Ensure the text is rotated to match the camera rotation
-        //float xRotation = cam.transform.eulerAngles.x;
         transform.rotation = Quaternion.Euler(90f, cam.transform.eulerAngles.y, 0);
     }
 }

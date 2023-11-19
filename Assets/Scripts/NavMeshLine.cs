@@ -83,9 +83,7 @@ public class NavMeshLine : MonoBehaviour
                 }
             }
             //rest of beacons on second floor (currently using these when on 1st and 3rd, don't change scene)
-
             originRoom = "Beacon " + DR.beacon1;
-            //destinationRoom = DR.destination;
         }
         else if (DR.origin != null && DR.destination != null) // uses the closest room entered by the user in React Native if no beacons found
         {

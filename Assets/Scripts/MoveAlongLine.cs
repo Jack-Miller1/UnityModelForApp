@@ -17,6 +17,8 @@ public class MoveAlongLine : MonoBehaviour
     // private Vector3[] midpoints;
 
     private DataFromReact DR; // used DR as name for DataFromReact (allows access to variables from DataFromReact.cs)
+    private GameObject endpoint;
+    private float distanceThreshold = 600f; //used to check if the user is close to their destination
 
     private void Start()
     {
@@ -28,12 +30,31 @@ public class MoveAlongLine : MonoBehaviour
     }
 
     void Update() {
+        //check if user object is close to the endpoint
+        if(endpoint == null && GameObject.Find(DR.destination) != null){
+            endpoint = GameObject.Find(DR.destination);
+        }
+        if (endpoint != null)
+        {
+            float distance = Vector3.Distance(endpoint.transform.position, transform.position);
+
+            if (distance < distanceThreshold)
+            {
+                DR.messageText.text = "You are close to your destination.";
+            }
+            if (distance < distanceThreshold/3)
+            {
+                DR.messageText.text = "You have reached your destination. \nThank you for using MNSU Wayfinder!";
+            }
+        }
+
+        //move user object along the line
         distanceAlongLine += DR.speed * Time.deltaTime;
 
         if (distanceAlongLine > lineRenderer.positionCount - 1) { //reset the user position on the line if it is before the starting point of the line
             distanceAlongLine = 0;
         }
-        if(DR.beacon1 != null && DR.beacon1 != "" && previousBeacon != DR.beacon1){ //reset the user position on the line when a new beacon is found
+        if(DR.beacon1 != null && DR.beacon1 != "" && previousBeacon != DR.beacon1){ //reset the user position on the line when a new beacon is in range
             previousBeacon = DR.beacon1;
             distanceAlongLine = 0;
         }
