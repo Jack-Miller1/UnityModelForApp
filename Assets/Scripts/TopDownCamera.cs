@@ -45,7 +45,6 @@ public class TopDownCamera : MonoBehaviour
 
     void Update()
     {
-        //CameraLocked = followButtonManager.FollowUserButtonManager.followOn;
         CameraLocked = followButtonManager.GetComponent<FollowUserButtonManager>().followOn;
         if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer && !CameraLocked)
         {

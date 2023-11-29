@@ -14,11 +14,11 @@ public class MoveAlongLine : MonoBehaviour
     Vector3 rotationAxis;
     Vector3 targetPosition;
 
-    // private Vector3[] midpoints;
-
     private DataFromReact DR; // used DR as name for DataFromReact (allows access to variables from DataFromReact.cs)
     private GameObject endpoint;
     private float distanceThreshold = 600f; //used to check if the user is close to their destination
+
+    private Vector3 velocity;
 
     private void Start()
     {
@@ -51,16 +51,17 @@ public class MoveAlongLine : MonoBehaviour
         //move user object along the line
         distanceAlongLine += DR.speed * Time.deltaTime;
 
-        if (distanceAlongLine > lineRenderer.positionCount - 1) { //reset the user position on the line if it is before the starting point of the line
+        if (distanceAlongLine > lineRenderer.positionCount - 1) { //when distance is too large, wrap around
             distanceAlongLine = 0;
         }
         if(DR.beacon1 != null && DR.beacon1 != "" && previousBeacon != DR.beacon1){ //reset the user position on the line when a new beacon is in range
             previousBeacon = DR.beacon1;
             distanceAlongLine = 0;
         }
-
-        transform.position = Vector3.Lerp(lineRenderer.GetPosition(Mathf.FloorToInt(distanceAlongLine)), lineRenderer.GetPosition(Mathf.CeilToInt(distanceAlongLine)), distanceAlongLine % 1);
-        transform.rotation = Quaternion.AngleAxis(angle, rotationAxis);
+        
+        //use linear interpolation to smoothly move the user object along the line.
+        transform.position = Vector3.Lerp(lineRenderer.GetPosition(Mathf.FloorToInt(distanceAlongLine)), lineRenderer.GetPosition(Mathf.CeilToInt(distanceAlongLine)), distanceAlongLine %1);
+        transform.rotation = Quaternion.AngleAxis(angle, rotationAxis); 
     }
     
 }

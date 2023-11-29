@@ -89,10 +89,5 @@ public class DataFromReact : MonoBehaviour
         }
         floor = obj.floor;
         speed = float.Parse(obj.speed);
-
-        // // Update the Unity UI Text component (used to test if data is received from React Native)
-        //messageText.text  = "Origin: " + origin + ", Destination: " + destination +
-        //                     ", Beacon ID1: " + beacon1 + ", Accessibility: " + accessibility + ", Floor: " + floor;
-        //Debug.Log("Message received: " + messageText.text);
     }
 }

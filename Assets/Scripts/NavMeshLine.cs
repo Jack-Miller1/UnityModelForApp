@@ -145,19 +145,6 @@ public class NavMeshLine : MonoBehaviour
         //Use the current origin and destination to update the line
         calculatePath(origin, destination, navMeshPath, lineRendererBig, 60.0f);
         calculatePath(origin, destination, navMeshPath, lineRendererSmall, 1.0f);
-
-        // //Switches scene when user clicks enter (testing purposes)
-        // if (Input.GetKeyDown(KeyCode.Return))
-        // {
-        //     if (accessibileRoute){
-        //         originRoom = elevator;
-        //     }else{
-        //         originRoom = stairs;
-        //     }
-            
-        //     SceneManager.LoadScene(destinationScene);
-        // }
-
     }
 
 
