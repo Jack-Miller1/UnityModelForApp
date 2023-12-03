@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using TMPro;
 
 
 public class DataFromReact : MonoBehaviour
 {
+    //values received by Unity from React Native
+    public string origin; 
+    public string destination;
+    public string beacon1;
+    public bool accessibility;
+    public string floor;
+    public float speed;
+    
+    //values used by other scripts in Unity that don't come from React Native
     public Text messageText;
-    public string originR = "TN241"; //originR because orgin comes from React Native (there is a different origin used later)
-    public string destinationR = "TN246";
-    public string beaconID1R;
-    public string distance1R;
-    //public TextMeshProUGUI textMeshProUGUI;
-    // public string Hello;
+    public bool floorChangeVisible = false;
+    public bool changeFloorClicked = false;
 
     private static DataFromReact instance;
 
@@ -23,93 +27,67 @@ public class DataFromReact : MonoBehaviour
         {
             if (instance == null)
             {
-                //instance = new DataFromReact();
-                // instance.originR;
-                // instance.destinationR;
                 instance = FindObjectOfType<DataFromReact>();
-                if (instance == null)
+                
+                if (instance == null) //if the instance is still null
                 {
-                    //GameObject obj = new GameObject("ReactToUnity"); // previously just GameObject()
-                    //obj.name = typeof(DataFromReact).Name;   // This line will name the object
-
-                    GameObject obj = GameObject.Find("ReactToUnity"); // Find the existing object named "ReactToUnity" in the scene
-                    instance = obj.AddComponent<DataFromReact>();
+                    GameObject GameObj = GameObject.Find("ReactToUnity"); // Find the existing object named "ReactToUnity" in the scene
+                    instance = GameObj.AddComponent<DataFromReact>();
                 }
             }
             return instance;
-
-    //         // if (instance == null)
-    //         // {
-    //         //     instance = FindObjectOfType<DataFromReact>();
-    //         //     if (instance == null)
-    //         //     {
-    //         //         GameObject obj = new GameObject("DataFromReact");
-    //         //         instance = obj.AddComponent<DataFromReact>();
-    //         //     }
-    //         //     // Initialize textMeshProUGUI if found on the object
-    //         //     textMeshProUGUI = GetComponent<TextMeshProUGUI>();
-    //         //     if (textMeshProUGUI != null)
-    //         //     {
-    //         //         textMeshProUGUI.text = "TN246";
-    //         //     }
-    //         // }
-    //         // return instance;
         }
     }
 
-    // private void Awake()
-    // {
-    //     if (instance == null)
-    //     {
-    //         instance = this;
-    //     }
-    // }
 
     void Start(){
-        messageText.text = "Goodbye";
-
-        //InvokeRepeating("GetDatas", 0f, 0.5f); // runs GetDatas every 500 ms  (not needed as setInterval in UnityApp.tsx accomplishes the same thing)
-        
-        // textMeshProUGUI = new TextMeshProUGUI();
-        // if (textMeshProUGUI != null) {
-        //     textMeshProUGUI.text = "TN246";
-        // }
-        // textMeshProUGUI = GetComponent<TextMeshProUGUI>();
-        // if (textMeshProUGUI != null)
-        // {
-        //     textMeshProUGUI.text = "TN246";
-        // }
+        messageText.text = "";
     }
 
-    public  class JsonObject
+    //This defines the object that has the data being sent by React Native
+    public class JsonObject
     {
-        public string originR;
-        public string destinationR;
-        public string beaconID1R;
-        public string distance1R;
+        public string origin;
+        public string destination;
+        public string beacon1;
+        public string accessibility;
+        public string floor;
+        public string speed;
     }
-    // As you can see here is the name of the function that we get the data.
-    // it should have the same name in RN function postMessage.
+
+    // Function that gets the data. It should have the same name in React Native function postMessage.
+    // Values from the JsonObject are placed into variables that other Unity scripts can use.
     public void GetData(string json)
     {
-        //textMeshProUGUI.text = json;
         JsonObject obj = JsonUtility.FromJson<JsonObject>(json);
-        originR = obj.originR;
-        destinationR = obj.destinationR;
-        beaconID1R = obj.beaconID1R;
-        distance1R = obj.distance1R;
-        
 
-        // Update the Unity UI Text component
-        messageText.text  = "Origin: " + originR + ", Destination: " + destinationR +
-                            ", Beacon ID1: " + beaconID1R + ", Distance1: " + distance1R;
-        Debug.Log("Message received: " + messageText.text);
+        // origin and destination are sent with T in front if they are a room (ex: TN270) by React Native side
+        if (obj.origin != null && obj.origin != "" && obj.origin[0] == 'T')
+        {
+            origin = obj.origin.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
+        }
+        else{
+            origin = obj.origin;
+        }
 
-        // if (textMeshProUGUI != null)
-        // {
-        //     textMeshProUGUI.text  = "Origin: " + originR + "\nDestination: " + destinationR +
-        //                     "\nBeacon ID: " + beaconID1R + "\nDistance: " + distance1R;
-        // }
-        // Debug.Log("Message received: " + textMeshProUGUI.text);
+        if (obj.destination != null && obj.destination != "" && obj.destination[0] == 'T')
+        {
+            destination = obj.destination.Substring(1); //take a substring to get rid of the T ex: TN270 -> N270
+        }
+        else{
+            destination = obj.destination;
+        }
+
+        beacon1 = obj.beacon1;
+
+        if (obj.accessibility == "true"){
+            accessibility = true;
+
+        }
+        else{
+            accessibility = false;
+        }
+        floor = obj.floor;
+        speed = float.Parse(obj.speed);
     }
 }
